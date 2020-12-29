@@ -1,15 +1,19 @@
 import React from 'react';
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 class App extends React.Component {
   state = {
     count:0
   }
   add = () => {
-    console.log("add");
+    // this.state.count++; // 이렇게 할 경우 react는 render function을 refresh하지 않음
+    // this.setState({count: this.state.count+1}); // react는 모든것을 다시 render하지 않고 변하는 부분만 새로 업데이트함(virtual DOM에 의해)
+    this.setState(current => ({count: current.count+1})); // setState를 호출 할대마다 react는 새로운 state와 함께 render()를 호출
   }
   minus = () => {
-    console.log("minus");
+    // this.state.count--; // setState()를 사용해야 됨
+    // this.setState({count: this.state.count-1}); // state에 의존하므로 좋은 코드는 아니기 때문에 나중에 바꿀 예정
+    this.setState(current => ({count: current.count-1}));
   }
   render(){
     return (
